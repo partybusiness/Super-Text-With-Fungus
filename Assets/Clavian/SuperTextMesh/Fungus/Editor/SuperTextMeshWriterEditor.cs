@@ -24,7 +24,7 @@ namespace Fungus
 		{
 			serializedObject.Update();
 			
-			DialogInput t = target as DialogInput;
+			//DialogInput t = target as DialogInput;
             EditorGUILayout.PropertyField(textObject);
             EditorGUILayout.PropertyField(extraDelay);
 
