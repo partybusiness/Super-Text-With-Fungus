@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using Fungus;
 using System;
@@ -12,6 +13,77 @@ public class SuperSayDialog : SayDialog {
     protected bool undrawWhenDone=false;
 
     protected SuperTextMeshWriter superWriter;
+
+    [Tooltip("The name text UI object")]
+    [SerializeField] protected SuperTextMesh nameSuperText;
+
+    protected new void Start()
+    {
+        // Dialog always starts invisible, will be faded in when writing starts
+        GetCanvasGroup().alpha = 0f;
+
+        // Add a raycaster if none already exists so we can handle dialog input
+        GraphicRaycaster raycaster = GetComponent<GraphicRaycaster>();
+        if (raycaster == null)
+        {
+            gameObject.AddComponent<GraphicRaycaster>();    
+        }
+
+        // It's possible that SetCharacterImage() has already been called from the
+        // Start method of another component, so check that no image has been set yet.
+        // Same for nameText.
+
+        if (nameText != null && nameText.text == "")
+        {
+            SetCharacterName("", Color.white);
+        }
+        if (nameSuperText != null && nameSuperText.text == "")
+        {
+            SetCharacterName("", Color.white);
+        }
+        if (currentCharacterImage == null)
+        {                
+            // Character image is hidden by default.
+            SetCharacterImage(null);
+        }
+
+        stringSubstituter.CacheSubstitutionHandlers();
+    }
+
+    public override void SetCharacter(Character character)
+    {
+        base.SetCharacter(character);
+
+        if (character == null)
+        {
+            if (nameSuperText != null && nameSuperText.text == "")
+            {
+                SetCharacterName("", Color.white);
+            }
+        }
+        else 
+        {
+            string characterName = character.NameText;
+
+            if (characterName == "")
+            {
+                // Use game object name as default
+                characterName = character.GetObjectName();
+            }
+
+            SetCharacterName(characterName, character.NameColor);
+        }
+    }
+
+    public override void SetCharacterName(string name, Color color)
+    {
+        if (nameSuperText != null)
+        {
+                var subbedName = stringSubstituter.SubstituteStrings(name);
+                nameSuperText.text = subbedName;
+                nameSuperText.color = color;
+        }
+    }
 
     protected SuperTextMeshWriter GetSuperWriter()
     {
