@@ -47,7 +47,6 @@ public class SuperSayDialog : SayDialog {
             SetCharacterImage(null);
         }
 
-        stringSubstituter.CacheSubstitutionHandlers();
     }
 
     public override void SetCharacter(Character character)
