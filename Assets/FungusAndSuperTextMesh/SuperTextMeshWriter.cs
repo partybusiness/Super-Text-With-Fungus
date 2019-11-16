@@ -143,7 +143,7 @@ namespace Fungus
 		}
 
 
-        public override IEnumerator Write(string content, bool clear, bool waitForInput, bool stopAudio, AudioClip audioClip, Action onComplete)
+        public override IEnumerator Write (string content, bool clear, bool waitForInput, bool stopAudio, bool waitForVO, AudioClip audioClip, Action onComplete)
         {
 
             if (!HasTextObject())

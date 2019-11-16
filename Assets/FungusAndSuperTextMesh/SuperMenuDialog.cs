@@ -5,7 +5,7 @@ using System.Linq;
 
 public class SuperMenuDialog : MenuDialog {
 
-    public override bool AddOption(string text, bool interactable, Block targetBlock)
+    public override bool AddOption(string text, bool interactable, bool hideOption, Block targetBlock)
     {
         bool addedOption = false;
         for (int i = 0; i < cachedButtons.Length; i++)
