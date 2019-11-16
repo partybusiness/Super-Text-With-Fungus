@@ -1,7 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using System.Collections;
-using Rotorz.ReorderableList;
 using System.Collections.Generic;
 
 namespace Fungus
@@ -15,7 +14,7 @@ namespace Fungus
         protected SerializedProperty canvas;
         protected SerializedProperty nameText;
         protected SerializedProperty image;
-        //protected SerializedProperty fitText;
+        protected SerializedProperty fitText;
         protected SerializedProperty closeOther;
         protected SerializedProperty disappear;
 
@@ -27,7 +26,7 @@ namespace Fungus
             canvas = serializedObject.FindProperty("dialogCanvas");
             nameText = serializedObject.FindProperty("nameSuperText");
             image = serializedObject.FindProperty("characterImage");
-            //fitText = serializedObject.FindProperty("fitTextWithImage");
+            fitText = serializedObject.FindProperty("fitTextWithImage");
             closeOther = serializedObject.FindProperty("closeOtherDialogs");
             disappear = serializedObject.FindProperty("disappearMode");		
 		}
@@ -41,7 +40,7 @@ namespace Fungus
             EditorGUILayout.PropertyField(canvas);
             EditorGUILayout.PropertyField(nameText);
             EditorGUILayout.PropertyField(image);
-            //EditorGUILayout.PropertyField(fitText);
+            EditorGUILayout.PropertyField(fitText);
             EditorGUILayout.PropertyField(closeOther);
             EditorGUILayout.PropertyField(disappear);
 				
