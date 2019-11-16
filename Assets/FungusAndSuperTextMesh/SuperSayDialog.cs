@@ -142,6 +142,7 @@ public class SuperSayDialog : SayDialog {
         {
             WriterAudio writerAudio = GetWriterAudio();
 			writerAudio.OnVoiceover(voiceOverClip);
+            writer.AttachedWriterAudio = writerAudio;
         }
         else if (speakingCharacter != null)
         {

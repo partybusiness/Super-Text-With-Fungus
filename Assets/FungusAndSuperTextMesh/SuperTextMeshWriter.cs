@@ -191,8 +191,15 @@ namespace Fungus
             }
 
 
+            if (waitForVO)
+            {
+                action2 = () =>
+                {
+                    StartCoroutine(DoWaitVOOnComplete(action));
+                };
+                superText.onCompleteEvent.AddListener(action2);
 
-            if (waitForInput)
+            } else if (waitForInput)
             {
                 action2 = () =>
                 {
@@ -233,7 +240,11 @@ namespace Fungus
 			return "";
 		}*/
 
-
+        protected virtual IEnumerator DoWaitVOOnComplete(UnityAction onComplete)
+        {
+            yield return DoWaitVO();
+            onComplete();
+        }
 
 
         protected virtual IEnumerator DoWaitForTimeOnComplete(bool clear, UnityAction onComplete)
