@@ -19,6 +19,7 @@ namespace Fungus
         protected SerializedProperty closeOther;
         protected SerializedProperty disappear;
 
+        [ExecuteInEditMode]
 		protected virtual void OnEnable()
 		{
             fade = serializedObject.FindProperty("fadeDuration");

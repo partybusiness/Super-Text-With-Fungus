@@ -104,7 +104,7 @@ public class SuperSayDialog : SayDialog {
     }
 
 
-	public override IEnumerator DoSay(string text, bool clearPrevious, bool waitForInput, bool fadeWhenDone, bool stopVoiceover, AudioClip voiceOverClip, Action onComplete)
+	public override IEnumerator DoSay (string text, bool clearPrevious, bool waitForInput, bool fadeWhenDone, bool stopVoiceover, bool waitForVO, AudioClip voiceOverClip, Action onComplete)
     {
         SuperTextMeshWriter writer = GetSuperWriter();
 
@@ -158,7 +158,7 @@ public class SuperSayDialog : SayDialog {
                 //soundEffectClip = speakingCharacter.soundEffect;
             }
         }
-        StartCoroutine(writer.Write(text, clearPrevious, waitForInput, stopVoiceover, soundEffectClip, onComplete));
+        StartCoroutine(writer.Write(text, clearPrevious, waitForInput, stopVoiceover, waitForVO, soundEffectClip, onComplete));
 
     }
 
